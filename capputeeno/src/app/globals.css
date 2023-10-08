@@ -1,5 +1,8 @@
 :root {
-  
+  --logo-color: #5d5d6d;
+  --bg-secondary: #f3f5f6;
+  --text-dark: #737380;
+  --delete-color: #de3838;
 }
 
 * {

@@ -1,3 +1,9 @@
+import { FilterBar } from '@/components/filters'
+
 export default function Home() {
-  return <h1>Home</h1>
+  return (
+    <main className="container">
+      <FilterBar />
+    </main>
+  )
 }

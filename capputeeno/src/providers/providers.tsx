@@ -1,6 +1,6 @@
 'use client'
 
-import { CartContextProvider } from '@/context'
+import { CartContextProvider, FilterContextProvider } from '@/context'
 import { ReactNode } from 'react'
 
 type ProvidersProps = {
@@ -8,5 +8,9 @@ type ProvidersProps = {
 }
 
 export function Providers({ children }: ProvidersProps) {
-  return <CartContextProvider>{children}</CartContextProvider>
+  return (
+    <CartContextProvider>
+      <FilterContextProvider>{children}</FilterContextProvider>
+    </CartContextProvider>
+  )
 }

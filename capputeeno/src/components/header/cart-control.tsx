@@ -13,6 +13,7 @@ const CartContainer = styled.div`
 const CartCount = styled.span`
   display: inline-flex;
   justify-content: center;
+  align-items: center;
   font-size: 0.625rem;
   font-weight: 600;
   width: 17px;
@@ -32,7 +33,7 @@ export function CartControl({ size }: ICart) {
   return (
     <CartContainer>
       <FiShoppingBag color="#737380" />
-      <CartCount>{size}</CartCount>
+      <CartCount>{2}</CartCount>
     </CartContainer>
   )
 }

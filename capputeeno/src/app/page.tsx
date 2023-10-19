@@ -5,9 +5,11 @@ import { ProductsProvider } from '@/providers'
 export default function Home() {
   return (
     <ProductsProvider>
-      <main className="container">
-        <FilterBar />
-        <Products />
+      <main style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <div className="container">
+          <FilterBar />
+          <Products />
+        </div>
       </main>
     </ProductsProvider>
   )

@@ -14,7 +14,7 @@ const sairaStencil = Saira_Stencil_One({
 })
 
 const TagHeader = styled.header`
-  max-width: 67.5rem;
+  max-width: 72.5rem;
   display: flex;
   padding: 1.25rem;
   margin: 0 auto;

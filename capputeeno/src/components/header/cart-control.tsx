@@ -33,7 +33,7 @@ export function CartControl({ size }: ICart) {
   return (
     <CartContainer>
       <FiShoppingBag color="#737380" />
-      <CartCount>{2}</CartCount>
+      <CartCount>{size}</CartCount>
     </CartContainer>
   )
 }

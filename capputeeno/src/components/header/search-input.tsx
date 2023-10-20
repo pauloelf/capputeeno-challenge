@@ -1,3 +1,4 @@
+import { useFilterContext } from '@/context'
 import { ComponentProps } from 'react'
 import { FiSearch } from 'react-icons/fi'
 
@@ -42,9 +43,14 @@ const Input = styled.input`
 type InputProps = ComponentProps<'input'>
 
 export function SearchInput(props: InputProps) {
+  const { search, setSearch } = useFilterContext()
   return (
     <SearchInputContainer onSubmit={(e) => e.preventDefault()}>
-      <Input {...props} />
+      <Input
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+        {...props}
+      />
       <button type="submit">
         <FiSearch color="#737380" />
       </button>

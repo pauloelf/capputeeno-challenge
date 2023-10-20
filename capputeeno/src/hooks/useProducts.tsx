@@ -3,6 +3,7 @@
 import { FilterProducts, FilterSort, useFilterContext } from '@/context'
 import { useQuery } from '@tanstack/react-query'
 import axios, { AxiosPromise } from 'axios'
+import { useDeferredValue } from 'react'
 
 export type Product = {
   name: string
@@ -77,14 +78,23 @@ const getQueryProduct = (type: FilterProducts, order: FilterSort) => {
 }
 
 export function useProducts() {
-  const { type, order } = useFilterContext()
+  const { type, order, search } = useFilterContext()
+  const searchDeferred = useDeferredValue(search)
+
   const query = getQueryProduct(type, order)
   const { data } = useQuery({
     queryKey: ['products', type, order],
     queryFn: () => fetchData(query),
   })
 
+  const products = data?.data?.data?.allProducts
+  const filteredProducts = products?.filter((product) =>
+    product.name
+      .toLocaleLowerCase()
+      .includes(searchDeferred.toLocaleLowerCase()),
+  )
+
   return {
-    data: data?.data?.data?.allProducts,
+    data: filteredProducts,
   }
 }

@@ -1,7 +1,6 @@
 'use client'
 
 import styled from 'styled-components'
-// eslint-disable-next-line camelcase
 import { Saira_Stencil_One } from 'next/font/google'
 import Link from 'next/link'
 import { SearchInput } from './search-input'

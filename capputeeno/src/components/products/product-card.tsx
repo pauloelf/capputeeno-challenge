@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styled from 'styled-components'
 
 type ProductCardProps = {
@@ -17,6 +16,9 @@ const Card = styled.div`
   width: 16rem;
 
   img {
+    width: 256px;
+    height: 300px;
+    object-fit: cover;
     border-radius: 0.5rem 0.5rem 0 0;
   }
 
@@ -50,7 +52,7 @@ const Card = styled.div`
 export function ProductCard({ image, price, title }: ProductCardProps) {
   return (
     <Card>
-      <Image src={image} width={256} height={300} alt={title} />
+      <img src={image} alt={title} />
       <h1>{title}</h1>
       <div></div>
       <p>

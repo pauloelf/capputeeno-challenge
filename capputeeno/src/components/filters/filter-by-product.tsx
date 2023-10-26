@@ -3,7 +3,7 @@ import { useFilterContext } from '@/context'
 import styled from 'styled-components'
 
 type FilterItemProps = {
-  active: boolean
+  active: 0 | 1
 }
 
 const FilterList = styled.ul`
@@ -32,13 +32,22 @@ export function FilterByProduct() {
 
   return (
     <FilterList>
-      <FilterItem onClick={() => setType('ALL')} active={type === 'ALL'}>
+      <FilterItem
+        onClick={() => setType('ALL')}
+        active={type === 'ALL' ? 1 : 0}
+      >
         Todos os produtos
       </FilterItem>
-      <FilterItem onClick={() => setType('SHIRT')} active={type === 'SHIRT'}>
+      <FilterItem
+        onClick={() => setType('SHIRT')}
+        active={type === 'SHIRT' ? 1 : 0}
+      >
         Camisetas
       </FilterItem>
-      <FilterItem onClick={() => setType('MUG')} active={type === 'MUG'}>
+      <FilterItem
+        onClick={() => setType('MUG')}
+        active={type === 'MUG' ? 1 : 0}
+      >
         Canecas
       </FilterItem>
     </FilterList>

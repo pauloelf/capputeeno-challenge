@@ -37,6 +37,7 @@ export function FilterContextProvider({ children }: ProviderProps) {
   const [order, setOrder] = useState<FilterSort>('NEWS')
 
   useEffect(() => {
+    if (location.pathname !== '/') return
     router.push(`/?page=1&q=${search}`)
   }, [search, router])
 

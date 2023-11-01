@@ -4,6 +4,7 @@ import { FilterProducts, FilterSort, useFilterContext } from '@/context'
 import { useQuery } from '@tanstack/react-query'
 import axios, { AxiosPromise } from 'axios'
 import { useDeferredValue } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export type Product = {
   name: string
@@ -15,6 +16,9 @@ export type Product = {
 interface ProductsProps {
   data: {
     allProducts: Product[]
+    _allProductsMeta: {
+      count: number
+    }
   }
 }
 
@@ -48,22 +52,44 @@ const getCategoryByOrder = (order: FilterSort) => {
   }
 }
 
-const getQueryProduct = (type: FilterProducts, order: FilterSort) => {
-  if (type === 'ALL' && order === 'NEWS')
+const getQueryProduct = (
+  type: FilterProducts,
+  order: FilterSort,
+  search: string,
+  page: number,
+) => {
+  const categoryProduct = getCategoryByProduct(type)
+  const categoryOrder = getCategoryByOrder(order)
+
+  if (search) {
     return `query {
-      allProducts (sortField: "created_at", sortOrder: "DSC") {
+      allProducts (filter:{q: "${search}"}, page: ${page}, perPage: 12, sortField: "${categoryOrder.field}", sortOrder: "${categoryOrder.order}") {
         id
         name
         price_in_cents
         image_url
+      },
+      _allProductsMeta(filter: {q: "${search}"}) {
+        count
+      }
+    }`
+  }
+
+  if (type === 'ALL' && order === 'NEWS')
+    return `query {
+      allProducts (page: ${page}, perPage: 12, sortField: "created_at", sortOrder: "DSC") {
+        id
+        name
+        price_in_cents
+        image_url
+      },
+      _allProductsMeta(filter: {q: "${search}"}) {
+        count
       }
     }`
 
-  const categoryProduct = getCategoryByProduct(type)
-  const categoryOrder = getCategoryByOrder(order)
-
   return `query {
-    allProducts (${
+    allProducts (page: ${page}, perPage: 12, ${
       categoryProduct ? `filter: { category: "${categoryProduct}" }` : ''
     }, sortField: "${categoryOrder.field}", sortOrder: "${
       categoryOrder.order
@@ -73,28 +99,42 @@ const getQueryProduct = (type: FilterProducts, order: FilterSort) => {
       price_in_cents
       image_url
       category
+    },
+    _allProductsMeta(filter: {q: "${search}", category: "${categoryProduct}"}) {
+      count
     }
   }`
 }
 
 export function useProducts() {
   const { type, order, search } = useFilterContext()
+  const searchParams = useSearchParams()
+  const page = searchParams.get('page')
   const searchDeferred = useDeferredValue(search)
 
-  const query = getQueryProduct(type, order)
+  const query = getQueryProduct(
+    type,
+    order,
+    searchDeferred,
+    page ? Number(page) - 1 : 0,
+  )
+
   const { data } = useQuery({
-    queryKey: ['products', type, order],
+    queryKey: [
+      'products',
+      type,
+      order,
+      searchDeferred,
+      page ? Number(page) - 1 : 0,
+    ],
     queryFn: () => fetchData(query),
   })
 
   const products = data?.data?.data?.allProducts
-  const filteredProducts = products?.filter((product) =>
-    product.name
-      .toLocaleLowerCase()
-      .includes(searchDeferred.toLocaleLowerCase()),
-  )
+  const count = data?.data?.data?._allProductsMeta.count
 
   return {
-    data: filteredProducts,
+    data: products,
+    count,
   }
 }

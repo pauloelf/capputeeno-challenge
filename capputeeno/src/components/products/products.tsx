@@ -3,6 +3,7 @@
 import { useProducts } from '@/hooks/useProducts'
 import { ProductCard } from './product-card'
 import styled from 'styled-components'
+import { Pagination } from '../pagination'
 
 const ProductsContainer = styled.div`
   display: grid;
@@ -13,17 +14,22 @@ const ProductsContainer = styled.div`
 `
 
 export function Products() {
-  const { data } = useProducts()
+  const { data, count } = useProducts()
+
+  if (!data || !count) return
   return (
-    <ProductsContainer>
-      {data?.map((product) => (
-        <ProductCard
-          key={product.id}
-          title={product.name}
-          image={product.image_url}
-          price={product.price_in_cents}
-        />
-      ))}
-    </ProductsContainer>
+    <>
+      <Pagination totalPages={count > 12 ? Math.ceil(count / 12) : 1} />
+      <ProductsContainer>
+        {data?.map((product) => (
+          <ProductCard
+            key={product.id}
+            title={product.name}
+            image={product.image_url}
+            price={product.price_in_cents}
+          />
+        ))}
+      </ProductsContainer>
+    </>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import {
   Dispatch,
   SetStateAction,
@@ -7,6 +8,7 @@ import {
   createContext,
   useContext,
   useState,
+  useEffect,
 } from 'react'
 
 type ProviderProps = {
@@ -20,11 +22,9 @@ export type FilterSort = 'NEWS' | 'BIGGEST-PRICE' | 'MINOR-PRICE' | 'POPULARITY'
 interface FilterContextProps {
   search: string
   type: FilterProducts
-  page: number
   order: FilterSort
   setSearch: Dispatch<SetStateAction<string>>
   setType: Dispatch<SetStateAction<FilterProducts>>
-  setPage: Dispatch<SetStateAction<number>>
   setOrder: Dispatch<SetStateAction<FilterSort>>
 }
 
@@ -32,20 +32,22 @@ const FilterContext = createContext({} as FilterContextProps)
 
 export function FilterContextProvider({ children }: ProviderProps) {
   const [search, setSearch] = useState('')
+  const router = useRouter()
   const [type, setType] = useState<FilterProducts>('ALL')
-  const [page, setPage] = useState(0)
   const [order, setOrder] = useState<FilterSort>('NEWS')
+
+  useEffect(() => {
+    router.push(`/?page=1&q=${search}`)
+  }, [search, router])
 
   return (
     <FilterContext.Provider
       value={{
         search,
         type,
-        page,
         order,
         setSearch,
         setType,
-        setPage,
         setOrder,
       }}
     >

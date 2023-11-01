@@ -44,6 +44,7 @@ type InputProps = ComponentProps<'input'>
 
 export function SearchInput(props: InputProps) {
   const { search, setSearch } = useFilterContext()
+
   return (
     <SearchInputContainer onSubmit={(e) => e.preventDefault()}>
       <Input

@@ -1,9 +1,11 @@
+import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
 
 type ProductCardProps = {
   title: string
   price: number
   image: string
+  id: string
 }
 
 const Card = styled.div`
@@ -14,6 +16,7 @@ const Card = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   width: 16rem;
+  cursor: pointer;
 
   img {
     width: 256px;
@@ -49,9 +52,15 @@ const Card = styled.div`
   }
 `
 
-export function ProductCard({ image, price, title }: ProductCardProps) {
+export function ProductCard({ id, image, price, title }: ProductCardProps) {
+  const router = useRouter()
+
+  const handleProduct = () => {
+    router.push(`/product/?id=${id}`)
+  }
+
   return (
-    <Card>
+    <Card onClick={handleProduct}>
       <img src={image} alt={title} />
       <h1>{title}</h1>
       <div></div>

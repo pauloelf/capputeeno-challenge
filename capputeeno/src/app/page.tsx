@@ -5,7 +5,7 @@ import { ProductsProvider } from '@/providers'
 export default function Home() {
   return (
     <ProductsProvider>
-      <main style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <main>
         <div className="container">
           <FilterBar />
           <Products />

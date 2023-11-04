@@ -38,7 +38,13 @@ export function FilterContextProvider({ children }: ProviderProps) {
 
   useEffect(() => {
     if (location.pathname !== '/') return
+    if (!search) {
+      router.push('/?page=1')
+      return
+    }
+
     router.push(`/?page=1&q=${search}`)
+    setType('ALL')
   }, [search, router])
 
   return (

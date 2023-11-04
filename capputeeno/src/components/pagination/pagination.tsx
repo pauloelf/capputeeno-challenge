@@ -93,6 +93,8 @@ export function Pagination({ totalPages }: PaginationProps) {
     router.push(`/?page=${currentPage}`)
   }
 
+  if (currentPage > totalPages) setCurrentPage(1)
+
   return (
     <PaginationContainer>
       <PageControlContainer>

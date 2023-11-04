@@ -128,6 +128,7 @@ export function useProducts() {
       page ? Number(page) - 1 : 0,
     ],
     queryFn: () => fetchData(query),
+    staleTime: 1000 * 60 * 1,
   })
 
   const products = data?.data?.data?.allProducts

@@ -9,6 +9,7 @@ interface ProductProps {
       price_in_cents: number
       category: string
       image_url: string
+      id: string
     }
   }
 }
@@ -24,6 +25,7 @@ const fetchData = (id: string): AxiosPromise<ProductProps> => {
       price_in_cents
       category
       image_url
+      id
     }}`,
   })
 }

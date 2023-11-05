@@ -1,5 +1,6 @@
 'use client'
 
+import { useCartContext } from '@/context'
 import { useProduct } from '@/hooks/useProduct'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { FiArrowLeftCircle, FiShoppingBag } from 'react-icons/fi'
@@ -127,6 +128,7 @@ export function Product() {
   const id = useSearchParams().get('id') as string
   const router = useRouter()
   const { data } = useProduct(id)
+  const { AddProductInCart } = useCartContext()
 
   const handleBack = () => {
     router.push('/')
@@ -160,7 +162,7 @@ export function Product() {
               <p>{data.description}</p>
             </div>
           </ProductInfo>
-          <button>
+          <button onClick={() => AddProductInCart(data, id)}>
             <FiShoppingBag />
             Adicionar ao carrinho
           </button>

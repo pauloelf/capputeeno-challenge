@@ -100,7 +100,9 @@ const getQueryProduct = (
       image_url
       category
     },
-    _allProductsMeta(filter: {q: "${search}", category: "${categoryProduct}"}) {
+    _allProductsMeta(filter: {q: "${search}", ${
+      categoryProduct ? `category: "${categoryProduct}"` : ''
+    }}) {
       count
     }
   }`

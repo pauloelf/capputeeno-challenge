@@ -1,9 +1,15 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { FiShoppingBag } from 'react-icons/fi'
 import styled from 'styled-components'
 
-const CartContainer = styled.div`
+const CartContainer = styled.button`
+  display: block;
   cursor: pointer;
   margin-top: 7px;
+  background-color: transparent;
+  border: none;
   > svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -30,8 +36,9 @@ type ICart = {
 }
 
 export function CartControl({ size }: ICart) {
+  const router = useRouter()
   return (
-    <CartContainer>
+    <CartContainer onClick={() => router.push('/cart')}>
       <FiShoppingBag color="#737380" />
       <CartCount>{size}</CartCount>
     </CartContainer>

@@ -43,6 +43,7 @@ const ProductContainer = styled.section`
   img {
     max-width: 40rem;
     width: 50%;
+    object-fit: cover;
   }
 
   > div {
@@ -71,6 +72,28 @@ const ProductContainer = styled.section`
         width: 1.5rem;
         height: 1.5rem;
       }
+    }
+  }
+
+  @media (max-width: 760px) {
+    gap: 1.25rem;
+
+    img {
+      width: 40%;
+    }
+
+    > div {
+      button {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 60%;
     }
   }
 `
@@ -120,6 +143,20 @@ const ProductInfo = styled.div`
 
     p {
       font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    h1 + span {
+      font-size: 1rem;
+    }
+    div {
+      h2 {
+        margin-top: 2rem;
+      }
     }
   }
 `

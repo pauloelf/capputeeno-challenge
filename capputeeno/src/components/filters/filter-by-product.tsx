@@ -11,6 +11,20 @@ const FilterList = styled.ul`
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
+
+  @media (max-width: 760px) {
+    gap: 1.5rem;
+
+    li {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    li {
+      font-size: 0.75rem;
+    }
+  }
 `
 
 const FilterItem = styled.li<FilterItemProps>`

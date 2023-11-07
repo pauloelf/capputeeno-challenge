@@ -25,6 +25,34 @@ const SearchInputContainer = styled.form`
       height: 1.5rem;
     }
   }
+
+  @media (max-width: 760px) {
+    width: 16rem;
+
+    input {
+      width: 16rem;
+      font-size: 0.75rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 13.5rem;
+
+    input {
+      width: 13.5rem;
+      font-size: 0.625rem;
+      line-height: 1rem;
+    }
+
+    button {
+      padding: 0.5625rem 0.75rem 0.375rem 0.75rem;
+      > svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+  }
 `
 
 const Input = styled.input`

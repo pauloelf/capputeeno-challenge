@@ -19,6 +19,7 @@ const TagHeader = styled.header`
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   > a {
     font-size: 2.5rem;
@@ -33,6 +34,28 @@ const TagHeader = styled.header`
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+  }
+
+  @media (max-width: 760px) {
+    padding: 0.75rem 1.25rem;
+
+    > a {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 0.5rem;
+
+    > a {
+      font-size: 1.25rem;
+    }
+
+    > div {
+      width: 100%;
+      justify-content: center;
+    }
   }
 `
 

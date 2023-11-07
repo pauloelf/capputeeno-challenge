@@ -8,6 +8,12 @@ const FilterContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 620px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
 `
 
 export function FilterBar() {

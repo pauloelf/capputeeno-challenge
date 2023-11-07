@@ -20,6 +20,10 @@ const PaginationContainer = styled.div`
   align-items: center;
   margin-top: 1.5rem;
   gap: 0.5rem;
+
+  @media (max-width: 620px) {
+    margin-top: 0.625rem;
+  }
 `
 
 const PageControlContainer = styled.ul`

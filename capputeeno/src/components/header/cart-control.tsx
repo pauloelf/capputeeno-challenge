@@ -14,6 +14,16 @@ const CartContainer = styled.button`
     width: 1.5rem;
     height: 1.5rem;
   }
+
+  @media (max-width: 500px) {
+    top: 0.75rem;
+    right: 1.25rem;
+    position: absolute;
+    > svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
 `
 
 const CartCount = styled.span`
@@ -29,6 +39,11 @@ const CartCount = styled.span`
   color: #fff;
   background-color: var(--delete-color);
   border-radius: 50%;
+
+  @media (max-width: 500px) {
+    width: 14px;
+    height: 14px;
+  }
 `
 
 type ICart = {

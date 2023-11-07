@@ -38,6 +38,7 @@ const SortFilter = styled.ul`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   list-style: none;
   top: 100%;
+  right: 0;
   z-index: 99;
 
   li {
@@ -50,6 +51,10 @@ const SortFilter = styled.ul`
 
   li + li {
     margin-top: 0.25rem;
+  }
+
+  @media (max-width: 620px) {
+    left: 0;
   }
 `
 

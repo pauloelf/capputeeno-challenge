@@ -11,6 +11,14 @@ const ProductsContainer = styled.div`
   max-width: 100%;
   gap: 2rem;
   margin-top: 2rem;
+
+  @media (max-width: 620px) {
+    grid-template-columns: repeat(auto-fill, 12.5rem);
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(auto-fill, 10rem);
+  }
 `
 
 export function Products() {

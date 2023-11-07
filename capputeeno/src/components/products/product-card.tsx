@@ -17,6 +17,7 @@ const Card = styled.div`
   backdrop-filter: blur(10px);
   width: 16rem;
   cursor: pointer;
+  border-radius: 0.5rem 0.5rem 0 0;
 
   img {
     width: 256px;
@@ -49,6 +50,47 @@ const Card = styled.div`
     padding-bottom: 0.5rem;
     margin-left: 0.875rem;
     color: var(--shapes-dark);
+  }
+
+  @media (max-width: 620px) {
+    width: 200px;
+
+    img {
+      width: 200px;
+      height: 232px;
+    }
+
+    h1 {
+      font-size: 0.875rem;
+    }
+
+    > div {
+      width: 10.75rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+  }
+  @media (max-width: 500px) {
+    width: 160px;
+
+    img {
+      width: 160px;
+      height: 180px;
+    }
+
+    h1 {
+      font-size: 0.75rem;
+    }
+
+    > div {
+      width: 8.25rem;
+    }
+
+    p {
+      font-size: 0.625rem;
+    }
   }
 `
 

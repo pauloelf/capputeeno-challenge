@@ -77,9 +77,13 @@ export function Cart() {
         <Divisor></Divisor>
         <TotalInfo>
           <p>Total</p>
-          <span>{getTotalPriceWBonus(cartProducts)}</span>
+          <span>
+            {cartProducts.length > 0
+              ? getTotalPriceWBonus(cartProducts)
+              : 'R$ 0,00'}
+          </span>
         </TotalInfo>
-        <Button>Finalizar a compra</Button>
+        <Button disabled={cartProducts.length === 0}>Finalizar a compra</Button>
       </CartResultContainer>
     </Container>
   )

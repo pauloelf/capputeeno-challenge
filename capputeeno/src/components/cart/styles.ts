@@ -27,6 +27,7 @@ export const Container = styled.div`
   align-items: stretch;
   gap: 2rem;
   padding-top: 0;
+  justify-content: space-between;
 
   @media (max-width: 960px) {
     flex-direction: column;
@@ -128,6 +129,11 @@ export const Button = styled.button`
   cursor: pointer;
   border: none;
   width: 100%;
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: default;
+  }
 `
 
 export const Item = styled.li`

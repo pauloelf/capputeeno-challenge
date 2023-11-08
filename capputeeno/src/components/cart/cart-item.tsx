@@ -51,7 +51,7 @@ const Item = styled.li`
       font-size: 0.75rem;
       font-weight: 400;
       max-height: 50%;
-      overflow: hidden;
+      overflow: auto;
       text-overflow: ellipsis;
     }
 
@@ -63,6 +63,70 @@ const Item = styled.li`
         font-size: 1rem;
         font-weight: 600;
         color: var(--shapes-dark);
+      }
+    }
+  }
+
+  @media (max-width: 760px) {
+    height: 10.75rem;
+    img {
+      width: 12rem;
+    }
+
+    > div {
+      h2 {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  @media (max-width: 620px) {
+    height: 8.75rem;
+
+    img {
+      width: 10rem;
+    }
+
+    button {
+      top: 0.5rem;
+    }
+
+    > div {
+      padding: 0.5rem 1rem 0.5rem 0.75rem;
+      h2 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.625rem;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+
+    img {
+      border-radius: 0.5rem 0.5rem 0 0;
+      width: 100%;
+    }
+
+    button {
+      right: 0.5rem;
+    }
+
+    > div {
+      padding: 0.5rem;
+      gap: 0.5rem;
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 0.75rem;
       }
     }
   }

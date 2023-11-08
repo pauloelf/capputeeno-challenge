@@ -33,6 +33,11 @@ const Container = styled.div`
   align-items: stretch;
   gap: 2rem;
   padding-top: 0;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 `
 
 const CartProducts = styled.div`
@@ -85,6 +90,10 @@ const CartResultContainer = styled.aside`
     margin-top: 1.875rem;
     margin-bottom: 0.75rem;
   }
+
+  @media (max-width: 500px) {
+    min-width: 12rem;
+  }
 `
 
 const Divisor = styled.div`
@@ -110,6 +119,10 @@ const TotalInfo = styled.div`
   font-size: 1rem;
   line-height: 150%;
   font-weight: 400;
+
+  @media (max-width: 960px) {
+    font-size: 0.875rem;
+  }
 `
 
 const Button = styled.button`

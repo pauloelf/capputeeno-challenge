@@ -2,24 +2,8 @@
 
 import { useProducts } from '@/hooks/useProducts'
 import { ProductCard } from './product-card'
-import styled from 'styled-components'
 import { Pagination } from '../pagination'
-
-const ProductsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 16rem);
-  max-width: 100%;
-  gap: 2rem;
-  margin-top: 2rem;
-
-  @media (max-width: 620px) {
-    grid-template-columns: repeat(auto-fill, 12.5rem);
-  }
-
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(auto-fill, 10rem);
-  }
-`
+import { ProductsContainer } from './styles'
 
 export function Products() {
   const { data, count } = useProducts()

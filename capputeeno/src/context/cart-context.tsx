@@ -31,11 +31,7 @@ type CartContextProps = {
 const CartContext = createContext({} as CartContextProps)
 
 export function CartContextProvider({ children }: ProviderProps) {
-  const [cartProducts, setCartProducts] = useState<ProductProps[]>(() => {
-    return localStorage.getItem('cart-products')
-      ? JSON.parse(localStorage.getItem('cart-products') ?? '')
-      : []
-  })
+  const [cartProducts, setCartProducts] = useState<ProductProps[]>([])
 
   const AddProductInCart = (product: ProductProps, id: string) => {
     const products = [...cartProducts]
@@ -44,6 +40,7 @@ export function CartContextProvider({ children }: ProviderProps) {
       const findProduct = cartProducts.findIndex((p) => p.id === id)
 
       if (findProduct !== -1) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         products[findProduct].quantity! += 1
         localStorage.setItem('cart-products', JSON.stringify([...products]))
         setCartProducts(JSON.parse(localStorage.getItem('cart-products') ?? ''))
@@ -80,6 +77,14 @@ export function CartContextProvider({ children }: ProviderProps) {
     localStorage.setItem('cart-products', JSON.stringify(newListProducts))
     setCartProducts(JSON.parse(localStorage.getItem('cart-products') ?? ''))
   }
+
+  useEffect(() => {
+    setCartProducts(() => {
+      return localStorage.getItem('cart-products')
+        ? JSON.parse(localStorage.getItem('cart-products') ?? '')
+        : []
+    })
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('cart-products', JSON.stringify([...cartProducts]))

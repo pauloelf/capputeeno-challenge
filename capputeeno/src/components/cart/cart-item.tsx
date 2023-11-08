@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ProductProps, useCartContext } from '@/context'
 import { FiTrash2 } from 'react-icons/fi'
 import { Item, SelectQuantity } from './styles'
